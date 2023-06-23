@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require('path')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -14,7 +15,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: {presets: ['@babel/preset-env', '@babel/react']},
+            options: { presets: ['@babel/preset-env', '@babel/react'] },
           },
           {
             loader: 'ts-loader',
@@ -22,11 +23,11 @@ module.exports = {
               configFile: path.resolve(__dirname, 'tsconfig.json'),
             },
           },
-        ]
+        ],
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -35,9 +36,11 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),
     },
     port: 3000,
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })],
   },
   target: 'web',
-};
+}

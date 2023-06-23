@@ -1,6 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
+import './shared/static/main.scss'
 
-import { App } from './App'
+import { ApplicationRouter } from './shared/component/ApplicationRouter'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+  .render(
+    <React.StrictMode>
+      <ApplicationRouter />
+    </React.StrictMode>,
+  )
